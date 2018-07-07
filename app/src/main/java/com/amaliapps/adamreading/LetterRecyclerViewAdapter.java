@@ -1,5 +1,7 @@
 package com.amaliapps.adamreading;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,26 +13,41 @@ import android.widget.TextView;
 import java.util.List;
 
 public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecyclerViewAdapter.LetterViewHolder> {
+    private Context mContext;
+    private List<Letter> mLetters;
 
-    static class LetterViewHolder extends RecyclerView.ViewHolder {
+    LetterRecyclerViewAdapter(Context context, List<Letter> letters) {
+        this.mLetters = letters;
+        this.mContext = context;
+    }
+
+    static class LetterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         CardView cardView;
         TextView letterCharacter;
         TextView letterName;
+        LetterItemClickListener itemClickListener;
 
         LetterViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+
             // Get a reference to the CardView
             cardView = itemView.findViewById(R.id.card_view);
+            // Get references to views inside the CardView
             letterCharacter = itemView.findViewById(R.id.character);
             letterName = itemView.findViewById(R.id.name);
         }
+
+        @Override
+        public void onClick(View view) {
+            this.itemClickListener.onItemClick(this.getLayoutPosition());
+        }
+
+        void setItemClickListener(LetterItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
+        }
     }
 
-    private List<Letter> letters;
-
-    LetterRecyclerViewAdapter(List<Letter> letters) {
-        this.letters = letters;
-    }
 
     @NonNull
     @Override
@@ -41,13 +58,21 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
 
     @Override
     public void onBindViewHolder(@NonNull LetterViewHolder holder, int position) {
-//        holder.letterCharacter.setText("aaaaaaa");
-        holder.letterCharacter.setText(String.valueOf(letters.get(position).getCharacter()));
-        holder.letterName.setText(String.valueOf(letters.get(position).getName()));
+        holder.letterCharacter.setText(String.valueOf(mLetters.get(position).getCharacter()));
+        holder.letterName.setText(String.valueOf(mLetters.get(position).getName()));
+
+        holder.setItemClickListener(new LetterItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(mContext, LetterActivity.class);
+                intent.putExtra("ggg", mLetters.get(position).getName());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return letters.size();
+        return mLetters.size();
     }
 }

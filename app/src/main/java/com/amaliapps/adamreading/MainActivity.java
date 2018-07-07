@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         recycler.setLayoutManager(layoutManager);
 
         // Attach adapter to recycler view
-        LetterRecyclerViewAdapter adapter = new LetterRecyclerViewAdapter(letters);
+        LetterRecyclerViewAdapter adapter = new LetterRecyclerViewAdapter(this, letters);
         recycler.setAdapter(adapter);
     }
 
