@@ -16,6 +16,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private static final int SPAN_COUNT = 3;
+    public static final String LETTER_EXTRA = MainActivity.class.getPackage().getName() +
+            "." + MainActivity.class.getSimpleName() + ".LETTER_EXTRA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Letter> createLetterList() {
         List<Letter> letterList = new ArrayList<>();
-        letterList.add(new Letter('א', "אלף"));
-        letterList.add(new Letter('ב', "בית"));
+        letterList.add(new Letter('א', "אלף", R.color.letterAleph));
+        letterList.add(new Letter('ב', "בית", R.color.letterBet));
+        letterList.add(new Letter('ג', "גימל", R.color.letterGimel));
+        letterList.add(new Letter('ד', "דלת", R.color.letterDalet));
         return letterList;
     }
 
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         Map<Character, String[]> wordList = new HashMap<>();
         wordList.put('א', res.getStringArray(R.array.aleph));
         wordList.put('ב', res.getStringArray(R.array.bet));
+        wordList.put('ג', res.getStringArray(R.array.gimel));
+        wordList.put('ד', res.getStringArray(R.array.dalet));
         Letter.sWords = wordList;
     }
 }

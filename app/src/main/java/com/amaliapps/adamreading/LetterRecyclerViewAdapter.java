@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static com.amaliapps.adamreading.MainActivity.LETTER_EXTRA;
+
 public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecyclerViewAdapter.LetterViewHolder> {
     private Context mContext;
     private List<Letter> mLetters;
@@ -24,7 +26,6 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
     static class LetterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         CardView cardView;
         TextView letterCharacter;
-        TextView letterName;
         RecyclerViewItemClickListener itemClickListener;
 
         LetterViewHolder(View itemView) {
@@ -35,7 +36,6 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
             cardView = itemView.findViewById(R.id.card_view);
             // Get references to views inside the CardView
             letterCharacter = itemView.findViewById(R.id.character);
-            letterName = itemView.findViewById(R.id.name);
         }
 
         @Override
@@ -58,13 +58,13 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
     @Override
     public void onBindViewHolder(@NonNull LetterViewHolder holder, int position) {
         holder.letterCharacter.setText(String.valueOf(mLetters.get(position).getCharacter()));
-        holder.letterName.setText(String.valueOf(mLetters.get(position).getName()));
+        holder.letterCharacter.setTextColor(mContext.getResources().getColor(mLetters.get(position).getColorResourceId()));
 
         holder.setItemClickListener(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(mContext, LetterActivity.class);
-                intent.putExtra("ggg", mLetters.get(position));
+                intent.putExtra(LETTER_EXTRA, mLetters.get(position));
                 mContext.startActivity(intent);
             }
         });

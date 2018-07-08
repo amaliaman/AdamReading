@@ -13,4 +13,18 @@
         <item>בנאי</item>
         <item>בקבוק</item>
     </string-array>
+
+    <string-array name="gimel">
+        <item>גגג</item>
+        <item>ברבור</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+
+    <string-array name="dalet">
+        <item>דדד</item>
+        <item>ברבור</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
 </resources>

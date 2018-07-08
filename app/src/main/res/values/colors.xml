@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Letter colors-->
+    <color name="letterAleph">#f57f17</color>
+    <color name="letterBet">#dd2c00</color>
+    <color name="letterGimel">#e91e63</color>
+    <color name="letterDalet">#00e676</color>
+
 </resources>
