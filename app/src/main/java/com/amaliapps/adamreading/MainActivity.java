@@ -1,14 +1,17 @@
 package com.amaliapps.adamreading;
 
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Populate alphabet list
         List<Letter> letters = createLetterList();
+
+        // Create words list
+        createWordList();
 
         // Get a reference to the recycler view
         RecyclerView recycler = findViewById(R.id.recycler_view);
@@ -51,9 +57,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private List<Letter> createLetterList() {
-        List<Letter> lettersList = new ArrayList<>();
-        lettersList.add(new Letter('א', "אלף"));
-        lettersList.add(new Letter('ב', "בית"));
-        return lettersList;
+        List<Letter> letterList = new ArrayList<>();
+        letterList.add(new Letter('א', "אלף"));
+        letterList.add(new Letter('ב', "בית"));
+        return letterList;
+    }
+
+    private void createWordList() {
+        Resources res = getResources();
+        Map<Character, String[]> wordList = new HashMap<>();
+        wordList.put('א', res.getStringArray(R.array.aleph));
+        wordList.put('ב', res.getStringArray(R.array.bet));
+        Letter.sWords = wordList;
     }
 }

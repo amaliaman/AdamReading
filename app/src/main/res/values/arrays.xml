@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="aleph">
+        <item>אדם</item>
+        <item>אורי</item>
+        <item>אבא</item>
+        <item>אמא</item>
+    </string-array>
+
+    <string-array name="bet">
+        <item>בית</item>
+        <item>ברבור</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+</resources>

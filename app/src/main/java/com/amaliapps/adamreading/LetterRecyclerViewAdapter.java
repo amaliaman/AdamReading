@@ -25,7 +25,7 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
         CardView cardView;
         TextView letterCharacter;
         TextView letterName;
-        LetterItemClickListener itemClickListener;
+        RecyclerViewItemClickListener itemClickListener;
 
         LetterViewHolder(View itemView) {
             super(itemView);
@@ -43,11 +43,10 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
             this.itemClickListener.onItemClick(this.getLayoutPosition());
         }
 
-        void setItemClickListener(LetterItemClickListener itemClickListener) {
+        void setItemClickListener(RecyclerViewItemClickListener itemClickListener) {
             this.itemClickListener = itemClickListener;
         }
     }
-
 
     @NonNull
     @Override
@@ -61,11 +60,11 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
         holder.letterCharacter.setText(String.valueOf(mLetters.get(position).getCharacter()));
         holder.letterName.setText(String.valueOf(mLetters.get(position).getName()));
 
-        holder.setItemClickListener(new LetterItemClickListener() {
+        holder.setItemClickListener(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(mContext, LetterActivity.class);
-                intent.putExtra("ggg", mLetters.get(position).getName());
+                intent.putExtra("ggg", mLetters.get(position));
                 mContext.startActivity(intent);
             }
         });
