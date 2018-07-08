@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recycler = findViewById(R.id.recycler_view);
         recycler.setHasFixedSize(true);
 
+        // todo: dynamically set span count according to available space
         // Setup a layout manager
         GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
         recycler.setLayoutManager(layoutManager);

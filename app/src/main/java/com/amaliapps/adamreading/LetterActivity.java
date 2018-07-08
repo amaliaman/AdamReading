@@ -14,6 +14,7 @@ public class LetterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letter);
+        // todo: handle rtl locale on rotation
 
         // Get letter from intent
         Letter letter = getIntent().getParcelableExtra(MainActivity.LETTER_EXTRA);
