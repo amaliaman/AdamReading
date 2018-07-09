@@ -1,4 +1,4 @@
-package com.amaliapps.adamreading;
+package com.amaliapps.adamreading.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -9,9 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.amaliapps.adamreading.R;
+import com.amaliapps.adamreading.helper.Utils;
+import com.amaliapps.adamreading.model.Letter;
+
 import java.util.Objects;
 
-import static com.amaliapps.adamreading.MainActivity.LETTER_POSITION_EXTRA;
+import static com.amaliapps.adamreading.activities.MainActivity.LETTER_POSITION_EXTRA;
 
 public class LetterActivity extends AppCompatActivity {
 

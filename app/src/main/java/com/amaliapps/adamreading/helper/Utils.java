@@ -1,4 +1,4 @@
-package com.amaliapps.adamreading;
+package com.amaliapps.adamreading.helper;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+
+import com.amaliapps.adamreading.R;
 
 import java.util.Locale;
 

@@ -1,10 +1,15 @@
-package com.amaliapps.adamreading;
+package com.amaliapps.adamreading.activities;
 
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.amaliapps.adamreading.controllers.LettersRecyclerViewAdapter;
+import com.amaliapps.adamreading.R;
+import com.amaliapps.adamreading.helper.Utils;
+import com.amaliapps.adamreading.model.Letter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         recycler.setLayoutManager(layoutManager);
 
         // Attach adapter to recycler view
-        LetterRecyclerViewAdapter adapter = new LetterRecyclerViewAdapter(this, Letter.alphabet);
+        LettersRecyclerViewAdapter adapter = new LettersRecyclerViewAdapter(this, Letter.alphabet);
         recycler.setAdapter(adapter);
     }
 

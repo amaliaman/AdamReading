@@ -1,4 +1,4 @@
-package com.amaliapps.adamreading;
+package com.amaliapps.adamreading.controllers;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,15 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.amaliapps.adamreading.R;
+import com.amaliapps.adamreading.activities.LetterActivity;
+import com.amaliapps.adamreading.helper.RecyclerViewItemClickListener;
+import com.amaliapps.adamreading.model.Letter;
+
 import java.util.List;
 
-import static com.amaliapps.adamreading.MainActivity.LETTER_POSITION_EXTRA;
+import static com.amaliapps.adamreading.activities.MainActivity.LETTER_POSITION_EXTRA;
 
-public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecyclerViewAdapter.LetterViewHolder> {
+public class LettersRecyclerViewAdapter extends RecyclerView.Adapter<LettersRecyclerViewAdapter.LetterViewHolder> {
     private Context mContext;
     private List<Letter> mLetters;
 
-    LetterRecyclerViewAdapter(Context context, List<Letter> letters) {
+    public LettersRecyclerViewAdapter(Context context, List<Letter> letters) {
         this.mLetters = letters;
         this.mContext = context;
     }
