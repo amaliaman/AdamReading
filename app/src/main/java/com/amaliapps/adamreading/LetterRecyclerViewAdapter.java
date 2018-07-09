@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import static com.amaliapps.adamreading.MainActivity.LETTER_EXTRA;
+import static com.amaliapps.adamreading.MainActivity.LETTER_POSITION_EXTRA;
 
 public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecyclerViewAdapter.LetterViewHolder> {
     private Context mContext;
@@ -51,7 +51,7 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
     @NonNull
     @Override
     public LetterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_card, parent, false);
         return new LetterViewHolder(v);
     }
 
@@ -64,7 +64,8 @@ public class LetterRecyclerViewAdapter extends RecyclerView.Adapter<LetterRecycl
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(mContext, LetterActivity.class);
-                intent.putExtra(LETTER_EXTRA, mLetters.get(position));
+                // Pass the position of the letter in the alphabet
+                intent.putExtra(LETTER_POSITION_EXTRA, Letter.alphabet.indexOf(mLetters.get(position)));
                 mContext.startActivity(intent);
             }
         });

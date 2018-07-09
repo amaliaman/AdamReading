@@ -1,12 +1,9 @@
 package com.amaliapps.adamreading;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
-
+import java.util.List;
 import java.util.Map;
 
-public class Letter implements Comparable<Letter>, Parcelable {
+public class Letter {
 
     // todo: explain in comments
     private char mCharacter;
@@ -14,7 +11,8 @@ public class Letter implements Comparable<Letter>, Parcelable {
     private int mColorResourceId;
     // todo: category/type
 
-    public static Map<Character, String[]> sWords;
+    public static List<Letter> alphabet;
+    public static Map<Character, String[]> exampleWords;
 
     public Letter(char character, String name, int colorResourceId) {
         this.mCharacter = character;
@@ -34,46 +32,22 @@ public class Letter implements Comparable<Letter>, Parcelable {
         return mColorResourceId;
     }
 
+    public Letter getNext() {
+        int currentIndex = alphabet.indexOf(this);
+        if (currentIndex < alphabet.size() - 1) {
+            return alphabet.get(currentIndex + 1);
+        } else return null;
+    }
+
+    public Letter getPrevious() {
+        int currentIndex = alphabet.indexOf(this);
+        if (currentIndex > 0) {
+            return alphabet.get(currentIndex - 1);
+        } else return null;
+    }
+
     @Override
     public String toString() {
         return mName;
-    }
-
-    // todo: needed?
-    // Implementation of Comparable interface
-    @Override
-    public int compareTo(@NonNull Letter letter) {
-        return Character.compare(this.mCharacter, letter.mCharacter);
-    }
-
-    // Implementation of Parcelable interface
-    public static final Creator<Letter> CREATOR = new Creator<Letter>() {
-        @Override
-        public Letter createFromParcel(Parcel in) {
-            return new Letter(in);
-        }
-
-        @Override
-        public Letter[] newArray(int size) {
-            return new Letter[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    private Letter(Parcel in) {
-        mCharacter = (char) in.readInt();
-        mName = in.readString();
-        mColorResourceId = in.readInt();
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt((int) mCharacter);
-        parcel.writeString(mName);
-        parcel.writeInt((int) mColorResourceId);
     }
 }

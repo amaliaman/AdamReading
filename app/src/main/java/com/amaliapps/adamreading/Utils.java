@@ -1,11 +1,33 @@
 package com.amaliapps.adamreading;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 
+import java.util.Locale;
+
+/**
+ * General helper methods
+ */
 public class Utils {
+
+    /**
+     * Force Hebrew app locale
+     */
+    public static void setHebrewLocale(Context context) {
+        // Create a new Locale object
+        Locale locale = new Locale(context.getString(R.string.hebrew_locale_code));
+        Locale.setDefault(locale);
+        // Create a new configuration object
+        Configuration config = new Configuration();
+        // Set the locale of the new configuration
+        config.locale = locale;
+        // Update the configuration of the Application context
+        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+    }
 
     /**
      * Change activity's colors, from http://www.gadgetsaint.com/tips/change-statusbar-color-android/

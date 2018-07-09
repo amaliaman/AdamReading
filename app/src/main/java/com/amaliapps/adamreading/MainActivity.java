@@ -1,6 +1,5 @@
 package com.amaliapps.adamreading;
 
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,15 +8,13 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int SPAN_COUNT = 3;
-    public static final String LETTER_EXTRA = MainActivity.class.getPackage().getName() +
-            "." + MainActivity.class.getSimpleName() + ".LETTER_EXTRA";
+    public static final String LETTER_POSITION_EXTRA = MainActivity.class.getPackage().getName() +
+            "." + MainActivity.class.getSimpleName() + ".LETTER_POSITION_EXTRA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Set Hebrew locale
-        setLocale(getString(R.string.hebrew_locale_code));
+        Utils.setHebrewLocale(this);
 
         // Populate alphabet list
-        List<Letter> letters = createLetterList();
+        createAlphabet();
 
-        // Create words list
+        // Create word list
         createWordList();
 
         // Get a reference to the recycler view
@@ -43,29 +40,16 @@ public class MainActivity extends AppCompatActivity {
         recycler.setLayoutManager(layoutManager);
 
         // Attach adapter to recycler view
-        LetterRecyclerViewAdapter adapter = new LetterRecyclerViewAdapter(this, letters);
+        LetterRecyclerViewAdapter adapter = new LetterRecyclerViewAdapter(this, Letter.alphabet);
         recycler.setAdapter(adapter);
     }
 
-    private void setLocale(String localeCode) {
-        // Create a new Locale object
-        Locale locale = new Locale(localeCode);
-        Locale.setDefault(locale);
-        // Create a new configuration object
-        Configuration config = new Configuration();
-        // Set the locale of the new configuration
-        config.locale = locale;
-        // Update the configuration of the Application context
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-    }
-
-    private List<Letter> createLetterList() {
-        List<Letter> letterList = new ArrayList<>();
-        letterList.add(new Letter('א', "אלף", R.color.letterAleph));
-        letterList.add(new Letter('ב', "בית", R.color.letterBet));
-        letterList.add(new Letter('ג', "גימל", R.color.letterGimel));
-        letterList.add(new Letter('ד', "דלת", R.color.letterDalet));
-        return letterList;
+    private void createAlphabet() {
+        Letter.alphabet = new ArrayList<>();
+        Letter.alphabet.add(new Letter('א', "אלף", R.color.letterAleph));
+        Letter.alphabet.add(new Letter('ב', "בית", R.color.letterBet));
+        Letter.alphabet.add(new Letter('ג', "גימל", R.color.letterGimel));
+        Letter.alphabet.add(new Letter('ד', "דלת", R.color.letterDalet));
     }
 
     private void createWordList() {
@@ -75,6 +59,6 @@ public class MainActivity extends AppCompatActivity {
         wordList.put('ב', res.getStringArray(R.array.bet));
         wordList.put('ג', res.getStringArray(R.array.gimel));
         wordList.put('ד', res.getStringArray(R.array.dalet));
-        Letter.sWords = wordList;
+        Letter.exampleWords = wordList;
     }
 }
