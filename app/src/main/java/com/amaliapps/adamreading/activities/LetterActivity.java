@@ -1,25 +1,23 @@
 package com.amaliapps.adamreading.activities;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.amaliapps.adamreading.R;
+import com.amaliapps.adamreading.controllers.LetterDetailsRecyclerViewAdapter;
 import com.amaliapps.adamreading.helper.Utils;
 import com.amaliapps.adamreading.model.Letter;
-
-import java.util.Objects;
 
 import static com.amaliapps.adamreading.activities.MainActivity.LETTER_POSITION_EXTRA;
 
 public class LetterActivity extends AppCompatActivity {
 
-    Letter letter;
+    private Letter mLetter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,44 +29,46 @@ public class LetterActivity extends AppCompatActivity {
 
         // Get letter position in alphabet from intent, then get letter
         int position = getIntent().getIntExtra(MainActivity.LETTER_POSITION_EXTRA, 0);
-        letter = Letter.alphabet.get(position);
+        mLetter = Letter.alphabet.get(position);
 
-        // Set activity's colors
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(
-                new ColorDrawable(getResources().getColor(letter.getColorResourceId())));
-        Utils.darkenStatusBar(this, letter.getColorResourceId());
 
-        // Set TextViews contents according to current letter
-        TextView characterTextView = findViewById(R.id.character);
-        characterTextView.setText(String.valueOf(letter.getCharacter()));
+        // Get a reference to the recycler view
+        final RecyclerView recycler = findViewById(R.id.details_recycler_view);
+//        recycler.setHasFixedSize(true);
 
-        TextView nameTextView = findViewById(R.id.name);
-        nameTextView.setText(letter.getName());
+        // todo: dynamically set span count according to available space
+        // Setup a layout manager
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(
+                this, LinearLayoutManager.HORIZONTAL, false);
+        recycler.setLayoutManager(layoutManager);
 
-        // Populate word list with contents according to current letter
-        ViewGroup wrapper = findViewById(R.id.wrapper);
-        String[] words = Letter.exampleWords.get(letter.getCharacter());
-        for (String word : words) {
-            TextView wordTextView = new TextView(this);
-            wordTextView.setTextAppearance(this, R.style.WordList);
-            wordTextView.setText(word);
-            wrapper.addView(wordTextView);
-        }
+        // Attach adapter to recycler view
+        final LetterDetailsRecyclerViewAdapter adapter = new LetterDetailsRecyclerViewAdapter(this, Letter.alphabet);
+        recycler.setAdapter(adapter);
+        recycler.scrollToPosition(position);
 
-        // Setup navigation buttons
-        ImageButton prev = findViewById(R.id.prev);
-        ImageButton next = findViewById(R.id.next);
-        // Set to visible if it's not the first/last letter
-        if (letter.getPrevious() != null) {
-            prev.setVisibility(View.VISIBLE);
-        }
-        if (letter.getNext() != null) {
-            next.setVisibility(View.VISIBLE);
-        }
+
+        // add pager behavior
+        final PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recycler);
+
+//
+//        // Setup navigation buttons
+//        ImageButton prev = findViewById(R.id.prev);
+//        ImageButton next = findViewById(R.id.next);
+//        // Set to visible if it's not the first/last letter
+//        if (letter.getPrevious() != null) {
+//            prev.setVisibility(View.VISIBLE);
+//        }
+//        if (letter.getNext() != null) {
+//            next.setVisibility(View.VISIBLE);
+//        }
         // Attach listener
-        prev.setOnClickListener(navigationListener);
-        next.setOnClickListener(navigationListener);
+//        prev.setOnClickListener(navigationListener);
+//        next.setOnClickListener(navigationListener);
     }
+
+
 
     View.OnClickListener navigationListener = new View.OnClickListener() {
         @Override
@@ -79,10 +79,10 @@ public class LetterActivity extends AppCompatActivity {
 
             switch (view.getId()) {
                 case R.id.prev:
-                    target = letter.getPrevious();
+                    target = mLetter.getPrevious();
                     break;
                 case R.id.next:
-                    target = letter.getNext();
+                    target = mLetter.getNext();
                     break;
             }
 

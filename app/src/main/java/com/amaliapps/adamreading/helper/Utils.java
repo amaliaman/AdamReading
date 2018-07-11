@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 
 import com.amaliapps.adamreading.R;
+import com.amaliapps.adamreading.model.Letter;
 
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * General helper methods
@@ -37,10 +41,9 @@ public class Utils {
      * @param activity the activity
      * @param color    the desired primary color
      */
-    public static void darkenStatusBar(Activity activity, int color) {
+    private static void darkenStatusBar(Activity activity, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity.getWindow().setStatusBarColor(darkenColor(
-                    ContextCompat.getColor(activity, color)));
+            activity.getWindow().setStatusBarColor(darkenColor(ContextCompat.getColor(activity, color)));
         }
     }
 
@@ -55,5 +58,13 @@ public class Utils {
         Color.colorToHSV(color, hsv);
         hsv[2] *= 0.8f;
         return Color.HSVToColor(hsv);
+    }
+
+
+    public static void changeActivityTheme(AppCompatActivity activity, Letter letter) {
+        //        // Set activity's colors
+        Objects.requireNonNull(activity.getSupportActionBar()).setBackgroundDrawable(
+                new ColorDrawable(activity.getResources().getColor(letter.getColorResourceId())));
+        darkenStatusBar(activity, letter.getColorResourceId());
     }
 }
