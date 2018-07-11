@@ -6,9 +6,9 @@
     android:layout_width="64dp"
     android:layout_height="64dp"
     android:layout_margin="16dp"
-    android:layoutDirection="rtl"
     app:cardCornerRadius="16dp"
-    app:cardElevation="16dp">
+    app:cardElevation="16dp"
+    tools:layoutDirection="rtl">
 
     <RelativeLayout
         android:layout_width="match_parent"

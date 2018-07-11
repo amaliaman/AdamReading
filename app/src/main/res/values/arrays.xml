@@ -27,4 +27,11 @@
         <item>בנאי</item>
         <item>בקבוק</item>
     </string-array>
+
+    <string-array name="hey">
+        <item>הההההה</item>
+        <item>ברבור</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
 </resources>
