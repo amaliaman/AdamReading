@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.amaliapps.adamreading.controllers.LettersRecyclerViewAdapter;
 import com.amaliapps.adamreading.R;
+import com.amaliapps.adamreading.controllers.LettersRecyclerViewAdapter;
 import com.amaliapps.adamreading.helper.Utils;
+import com.amaliapps.adamreading.helper.VarColumnGridLayoutManager;
 import com.amaliapps.adamreading.model.Letter;
 
 import java.util.ArrayList;
@@ -17,7 +18,14 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int SPAN_COUNT = 3;
+    /**
+     * Width of a single letter card in grid
+     */
+    private static final int MIN_ITEM_WIDTH = 360;
+
+    /**
+     * Key for letter position extra
+     */
     public static final String LETTER_POSITION_EXTRA = MainActivity.class.getPackage().getName() +
             "." + MainActivity.class.getSimpleName() + ".LETTER_POSITION_EXTRA";
 
@@ -41,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         // todo: dynamically set span count according to available space
         // Setup a layout manager
-        GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
+        GridLayoutManager layoutManager = new VarColumnGridLayoutManager(this, MIN_ITEM_WIDTH);
         recycler.setLayoutManager(layoutManager);
 
         // Attach adapter to recycler view

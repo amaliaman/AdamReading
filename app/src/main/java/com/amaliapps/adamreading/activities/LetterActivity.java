@@ -36,7 +36,6 @@ public class LetterActivity extends AppCompatActivity {
         final RecyclerView recycler = findViewById(R.id.details_recycler_view);
 //        recycler.setHasFixedSize(true);
 
-        // todo: dynamically set span count according to available space
         // Setup a layout manager
         final LinearLayoutManager layoutManager = new LinearLayoutManager(
                 this, LinearLayoutManager.HORIZONTAL, false);

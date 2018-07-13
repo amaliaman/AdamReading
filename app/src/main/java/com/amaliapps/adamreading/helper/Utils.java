@@ -1,6 +1,5 @@
 package com.amaliapps.adamreading.helper;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -36,19 +35,32 @@ public class Utils {
     }
 
     /**
-     * Change activity's colors, from http://www.gadgetsaint.com/tips/change-statusbar-color-android/
+     * Set activity's title according to the current {@link Letter}
      *
-     * @param activity the activity
-     * @param color    the desired primary color
+     * @param activity the parent activity
+     * @param letter   the current letter displayed in the activity
      */
-    private static void darkenStatusBar(Activity activity, int color) {
+    public static void setActivityTitle(AppCompatActivity activity, Letter letter) {
+        activity.setTitle(letter.getName());
+    }
+
+    /**
+     * Change activity's colors according to the current {@link Letter}
+     *
+     * @param activity the parent activity
+     * @param letter   the current letter displayed in the activity
+     */
+    public static void changeActivityTheme(AppCompatActivity activity, Letter letter) {
+        Objects.requireNonNull(activity.getSupportActionBar()).setBackgroundDrawable(
+                new ColorDrawable(activity.getResources().getColor(letter.getColorResourceId())));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity.getWindow().setStatusBarColor(darkenColor(ContextCompat.getColor(activity, color)));
+            activity.getWindow().setStatusBarColor(darkenColor(
+                    ContextCompat.getColor(activity, letter.getColorResourceId())));
         }
     }
 
     /**
-     * darken the color supplied
+     * Darken the color supplied
      *
      * @param color the desired primary color
      * @return the resulting primary dark color
@@ -58,13 +70,5 @@ public class Utils {
         Color.colorToHSV(color, hsv);
         hsv[2] *= 0.8f;
         return Color.HSVToColor(hsv);
-    }
-
-
-    public static void changeActivityTheme(AppCompatActivity activity, Letter letter) {
-        //        // Set activity's colors
-        Objects.requireNonNull(activity.getSupportActionBar()).setBackgroundDrawable(
-                new ColorDrawable(activity.getResources().getColor(letter.getColorResourceId())));
-        darkenStatusBar(activity, letter.getColorResourceId());
     }
 }

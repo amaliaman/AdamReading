@@ -7,16 +7,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amaliapps.adamreading.R;
-import com.amaliapps.adamreading.helper.RecyclerViewItemClickListener;
 import com.amaliapps.adamreading.helper.Utils;
 import com.amaliapps.adamreading.model.Letter;
 
 import java.util.List;
 
-public class LetterDetailsRecyclerViewAdapter extends RecyclerView.Adapter<LetterDetailsRecyclerViewAdapter.LetterDetailsViewHolder> {
+public class LetterDetailsRecyclerViewAdapter
+        extends RecyclerView.Adapter<LetterDetailsRecyclerViewAdapter.LetterDetailsViewHolder> {
+
     private Context mContext;
     private List<Letter> mLetters;
     private Letter mLetter;
@@ -26,27 +28,23 @@ public class LetterDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Lette
         this.mContext = context;
     }
 
-    static class LetterDetailsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        RecyclerViewItemClickListener itemClickListener;
+    static class LetterDetailsViewHolder extends RecyclerView.ViewHolder {
         TextView characterTextView;
         TextView nameTextView;
         ViewGroup wrapper;
+        ImageView prev;
+        ImageView next;
 
         LetterDetailsViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
 
             // Get references to views inside the CardView
             characterTextView = itemView.findViewById(R.id.character);
             nameTextView = itemView.findViewById(R.id.name);
             wrapper = itemView.findViewById(R.id.wrapper);
+            prev = itemView.findViewById(R.id.prev);
+            next = itemView.findViewById(R.id.next);
         }
-
-        @Override
-        public void onClick(View view) {
-            this.itemClickListener.onItemClick(this.getLayoutPosition());
-        }
-
     }
 
     @NonNull
@@ -58,7 +56,11 @@ public class LetterDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Lette
 
     @Override
     public void onViewAttachedToWindow(@NonNull LetterDetailsViewHolder holder) {
-        Utils.changeActivityTheme((AppCompatActivity)mContext, mLetters.get(holder.getAdapterPosition()));
+        AppCompatActivity activity = (AppCompatActivity) mContext;
+        Letter currentLetter = mLetters.get(holder.getAdapterPosition());
+
+        Utils.changeActivityTheme(activity, currentLetter);
+        Utils.setActivityTitle(activity, currentLetter);
     }
 
     @Override
@@ -77,16 +79,14 @@ public class LetterDetailsRecyclerViewAdapter extends RecyclerView.Adapter<Lette
             holder.wrapper.addView(wordTextView);
         }
 
-//        // Setup navigation buttons
-//        ImageButton prev = findViewById(R.id.prev);
-//        ImageButton next = findViewById(R.id.next);
-//        // Set to visible if it's not the first/last letter
-//        if (letter.getPrevious() != null) {
-//            prev.setVisibility(View.VISIBLE);
-//        }
-//        if (letter.getNext() != null) {
-//            next.setVisibility(View.VISIBLE);
-//        }
+        // Setup scroll indicators
+        // Set to visible if it's not the first/last letter
+        if (mLetter.getPrevious() != null) {
+            holder.prev.setVisibility(View.VISIBLE);
+        }
+        if (mLetter.getNext() != null) {
+            holder.next.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

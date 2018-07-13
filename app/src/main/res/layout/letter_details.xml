@@ -22,13 +22,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/prev"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="?attr/actionBarItemBackground"
             android:src="@drawable/ic_prev"
             android:visibility="invisible"
             tools:visibility="visible" />
@@ -41,13 +40,12 @@
             android:textAlignment="center"
             tools:text="אלף" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/next"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="?attr/actionBarItemBackground"
             android:src="@drawable/ic_next"
             android:visibility="invisible"
             tools:visibility="visible" />

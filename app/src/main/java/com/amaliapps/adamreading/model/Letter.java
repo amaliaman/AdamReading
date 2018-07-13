@@ -5,11 +5,9 @@ import java.util.Map;
 
 public class Letter {
 
-    // todo: explain in comments
     private char mCharacter;
     private String mName;
     private int mColorResourceId;
-    // todo: category/type
 
     public static List<Letter> alphabet;
     public static Map<Character, String[]> exampleWords;
