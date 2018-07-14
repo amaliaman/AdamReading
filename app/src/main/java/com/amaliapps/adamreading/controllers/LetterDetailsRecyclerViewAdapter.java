@@ -4,7 +4,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,15 +30,19 @@ public class LetterDetailsRecyclerViewAdapter
         this.mContext = context;
     }
 
-    static class LetterDetailsViewHolder extends RecyclerView.ViewHolder {
+    static class LetterDetailsViewHolder extends RecyclerView.ViewHolder
+            implements View.OnTouchListener {
         TextView characterTextView;
         TextView nameTextView;
         ViewGroup wrapper;
         ImageView prev;
         ImageView next;
+        RecyclerViewOnItemTouchListener onItemTouchListener;
+
 
         LetterDetailsViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnTouchListener(this);
 
             // Get references to views inside the CardView
             characterTextView = itemView.findViewById(R.id.character);
@@ -44,6 +50,17 @@ public class LetterDetailsRecyclerViewAdapter
             wrapper = itemView.findViewById(R.id.wrapper);
             prev = itemView.findViewById(R.id.prev);
             next = itemView.findViewById(R.id.next);
+        }
+
+        void setOnItemTouchListener(RecyclerViewOnItemTouchListener onItemTouchListener) {
+            this.onItemTouchListener = onItemTouchListener;
+        }
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+//            Log.d("===", "motionEvent: " + motionEvent);
+            this.onItemTouchListener.onItemTouch(this.getLayoutPosition(), motionEvent);
+            return true;
         }
     }
 
@@ -58,7 +75,6 @@ public class LetterDetailsRecyclerViewAdapter
     public void onViewAttachedToWindow(@NonNull LetterDetailsViewHolder holder) {
         AppCompatActivity activity = (AppCompatActivity) mContext;
         Letter currentLetter = mLetters.get(holder.getAdapterPosition());
-
         Utils.changeActivityTheme(activity, currentLetter);
         Utils.setActivityTitle(activity, currentLetter);
     }
@@ -87,6 +103,18 @@ public class LetterDetailsRecyclerViewAdapter
         if (mLetter.getNext() != null) {
             holder.next.setVisibility(View.VISIBLE);
         }
+
+        holder.setOnItemTouchListener(new RecyclerViewOnItemTouchListener() {
+            @Override
+            public void onItemTouch(int position, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_BUTTON_RELEASE) {
+                    Log.d("===", motionEvent.getAction()+"");
+                    AppCompatActivity activity = (AppCompatActivity) mContext;
+                    Utils.changeActivityTheme(activity, mLetter);
+                    Utils.setActivityTitle(activity, mLetter);
+                }
+            }
+        });
     }
 
     @Override

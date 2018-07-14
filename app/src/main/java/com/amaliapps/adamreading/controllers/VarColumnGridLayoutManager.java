@@ -1,4 +1,4 @@
-package com.amaliapps.adamreading.helper;
+package com.amaliapps.adamreading.controllers;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;

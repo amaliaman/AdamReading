@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.amaliapps.adamreading.R;
 import com.amaliapps.adamreading.activities.LetterActivity;
-import com.amaliapps.adamreading.helper.RecyclerViewItemClickListener;
 import com.amaliapps.adamreading.model.Letter;
 
 import java.util.List;
