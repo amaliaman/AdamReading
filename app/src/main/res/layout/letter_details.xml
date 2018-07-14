@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,29 +7,35 @@
 
     <TextView
         android:id="@+id/character"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        tools:text="א" />
+        style="@style/Character"
+        tools:text="א"
+        tools:textColor="@color/colorPrimary" />
 
     <LinearLayout
         android:id="@+id/wrapper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        style="@style/WordList"
+        android:layout_below="@id/character"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/WordListItem"
+            android:visibility="gone"
+            tools:text="אדם"
+            tools:visibility="visible" />
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/letter_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        tools:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/prev"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/ic_prev"
-            android:visibility="invisible"
+            style="@style/Nav"
+            android:contentDescription="@string/prev"
+            android:src="@drawable/ic_nav"
             tools:visibility="visible" />
 
         <TextView
@@ -37,17 +43,15 @@
             style="@style/LetterName"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:textAlignment="center"
-            tools:text="אלף" />
+            tools:text="אלף"
+            tools:textColor="@android:color/white" />
 
         <ImageView
             android:id="@+id/next"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/ic_next"
-            android:visibility="invisible"
+            style="@style/Nav"
+            android:contentDescription="@string/next"
+            android:src="@drawable/ic_nav"
             tools:visibility="visible" />
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

@@ -12,8 +12,6 @@ import com.amaliapps.adamreading.helper.Utils;
 import com.amaliapps.adamreading.model.Letter;
 
 public class LetterActivity extends AppCompatActivity {
-    AppCompatActivity aca;
-    Letter l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +42,5 @@ public class LetterActivity extends AppCompatActivity {
         // add pager behavior
         final PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recycler);
-
-/*
-        aca = this;
-        l = Letter.alphabet.get(layoutManager.findFirstVisibleItemPosition());
-        recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    Log.d("===", "onScrollStateChanged: " + newState);
-                    Utils.changeActivityTheme(aca, l);
-                    Utils.setActivityTitle(aca, l);
-                }
-            }
-        });
-*/
     }
 }

@@ -71,4 +71,18 @@ public class Utils {
         hsv[2] *= 0.8f;
         return Color.HSVToColor(hsv);
     }
+    public static int lightenColor(int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[2] += 0.05f;
+        return Color.HSVToColor(hsv);
+    }
+
+    public static int changeColor(int color, float f) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[0] /= f;
+        return Color.HSVToColor(hsv);
+    }
+
 }

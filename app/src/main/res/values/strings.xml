@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">אדם לומד לקרוא</string>
     <string name="hebrew_locale_code">he</string>
+
+    <string name="next">הבא</string>
+    <string name="prev">הקודם</string>
 </resources>

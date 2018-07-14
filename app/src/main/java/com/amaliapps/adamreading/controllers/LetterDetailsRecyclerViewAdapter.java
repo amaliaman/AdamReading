@@ -1,10 +1,15 @@
 package com.amaliapps.adamreading.controllers;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +26,7 @@ import java.util.List;
 public class LetterDetailsRecyclerViewAdapter
         extends RecyclerView.Adapter<LetterDetailsRecyclerViewAdapter.LetterDetailsViewHolder> {
 
+    private final static Float HIGHLIGHT_RATIO = 1.5F;
     private Context mContext;
     private List<Letter> mLetters;
     private Letter mLetter;
@@ -35,10 +41,10 @@ public class LetterDetailsRecyclerViewAdapter
         TextView characterTextView;
         TextView nameTextView;
         ViewGroup wrapper;
+        ViewGroup letterPager;
         ImageView prev;
         ImageView next;
         RecyclerViewOnItemTouchListener onItemTouchListener;
-
 
         LetterDetailsViewHolder(View itemView) {
             super(itemView);
@@ -48,6 +54,7 @@ public class LetterDetailsRecyclerViewAdapter
             characterTextView = itemView.findViewById(R.id.character);
             nameTextView = itemView.findViewById(R.id.name);
             wrapper = itemView.findViewById(R.id.wrapper);
+            letterPager = itemView.findViewById(R.id.letter_pager);
             prev = itemView.findViewById(R.id.prev);
             next = itemView.findViewById(R.id.next);
         }
@@ -58,7 +65,6 @@ public class LetterDetailsRecyclerViewAdapter
 
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
-//            Log.d("===", "motionEvent: " + motionEvent);
             this.onItemTouchListener.onItemTouch(this.getLayoutPosition(), motionEvent);
             return true;
         }
@@ -82,16 +88,29 @@ public class LetterDetailsRecyclerViewAdapter
     @Override
     public void onBindViewHolder(@NonNull LetterDetailsViewHolder holder, int position) {
         mLetter = mLetters.get(position);
+        int letterColour = mContext.getResources().getColor(mLetter.getColorResourceId());
 
         holder.characterTextView.setText(String.valueOf(mLetter.getCharacter()));
         holder.nameTextView.setText(String.valueOf(mLetter.getName()));
+//        holder.nameTextView.setTextColor(letterColour);
 
         // Populate word list with contents according to current letter
         String[] words = Letter.exampleWords.get(mLetter.getCharacter());
-        for (String word : words) {
+        for (int i = 0; i < words.length; i++) {
+            // Format the first letter of the word by using Spannable
+            Spannable highlight = new SpannableString(words[i]);
+            int shade = Utils.changeColor(letterColour, ((float) i + 0.05f));
+
+            highlight.setSpan(new ForegroundColorSpan(shade),
+                    0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            highlight.setSpan(new RelativeSizeSpan(HIGHLIGHT_RATIO),
+                    0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            highlight.setSpan(new StyleSpan(Typeface.BOLD),
+                    0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
             TextView wordTextView = new TextView(mContext);
-            wordTextView.setTextAppearance(mContext, R.style.WordList);
-            wordTextView.setText(word);
+            wordTextView.setTextAppearance(mContext, R.style.WordListItem);
+            wordTextView.setText(highlight);
             holder.wrapper.addView(wordTextView);
         }
 
@@ -104,11 +123,13 @@ public class LetterDetailsRecyclerViewAdapter
             holder.next.setVisibility(View.VISIBLE);
         }
 
+        int shade1 = Utils.lightenColor(letterColour);
+        holder.letterPager.setBackgroundColor(shade1);
+
         holder.setOnItemTouchListener(new RecyclerViewOnItemTouchListener() {
             @Override
             public void onItemTouch(int position, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_BUTTON_RELEASE) {
-                    Log.d("===", motionEvent.getAction()+"");
                     AppCompatActivity activity = (AppCompatActivity) mContext;
                     Utils.changeActivityTheme(activity, mLetter);
                     Utils.setActivityTitle(activity, mLetter);
