@@ -13,10 +13,10 @@ public class Initializer {
 
     public static void createAlphabet() {
         Letter.alphabet = new ArrayList<>();
-        Letter.alphabet.add(new Letter('א', "אלף", R.color.letterAleph));
-        Letter.alphabet.add(new Letter('ב', "בית", R.color.letterBet));
-        Letter.alphabet.add(new Letter('ג', "גימל", R.color.letterGimel));
-        Letter.alphabet.add(new Letter('ד', "דלת", R.color.letterDalet));
+        Letter.alphabet.add(new Letter('א', "אלף", R.color.letterAleph, R.drawable.aleph));
+        Letter.alphabet.add(new Letter('ב', "בית", R.color.letterBet, R.drawable.bet));
+        Letter.alphabet.add(new Letter('ג', "גימל", R.color.letterGimel, R.drawable.gimel));
+        Letter.alphabet.add(new Letter('ד', "דלת", R.color.letterDalet,  R.drawable.dalet));
     }
 
     public static void createWordList(Resources res) {

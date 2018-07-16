@@ -3,18 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/letter_icon"
+        android:padding="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/aleph" />
+
     <TextView
+        android:visibility="gone"
         android:id="@+id/character"
         style="@style/Character"
         tools:text="א"
         tools:textColor="@color/colorPrimary" />
 
     <LinearLayout
+        android:layout_below="@id/letter_icon"
         android:id="@+id/wrapper"
         style="@style/WordList"
-        android:layout_below="@id/character"
         android:orientation="vertical">
 
         <TextView

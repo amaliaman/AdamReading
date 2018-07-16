@@ -26,7 +26,10 @@ import java.util.List;
 public class LetterDetailsRecyclerViewAdapter
         extends RecyclerView.Adapter<LetterDetailsRecyclerViewAdapter.LetterDetailsViewHolder> {
 
-    private final static Float HIGHLIGHT_RATIO = 1.5F;
+    private final static float HIGHLIGHT_RATIO = 1.75F;
+    private final static int HUE_DELTA = 45;
+
+
     private Context mContext;
     private List<Letter> mLetters;
     private Letter mLetter;
@@ -42,6 +45,7 @@ public class LetterDetailsRecyclerViewAdapter
         TextView nameTextView;
         ViewGroup wrapper;
         ViewGroup letterPager;
+        ImageView icon;
         ImageView prev;
         ImageView next;
         RecyclerViewOnItemTouchListener onItemTouchListener;
@@ -55,6 +59,7 @@ public class LetterDetailsRecyclerViewAdapter
             nameTextView = itemView.findViewById(R.id.name);
             wrapper = itemView.findViewById(R.id.wrapper);
             letterPager = itemView.findViewById(R.id.letter_pager);
+            icon = itemView.findViewById(R.id.letter_icon);
             prev = itemView.findViewById(R.id.prev);
             next = itemView.findViewById(R.id.next);
         }
@@ -82,13 +87,16 @@ public class LetterDetailsRecyclerViewAdapter
         AppCompatActivity activity = (AppCompatActivity) mContext;
         Letter currentLetter = mLetters.get(holder.getAdapterPosition());
         Utils.changeActivityTheme(activity, currentLetter);
-        Utils.setActivityTitle(activity, currentLetter);
+//        Utils.setActivityTitle(activity, currentLetter);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LetterDetailsViewHolder holder, int position) {
         mLetter = mLetters.get(position);
         int letterColour = mContext.getResources().getColor(mLetter.getColorResourceId());
+
+        holder.icon.setImageResource(mLetter.getIconResourceId());
+        holder.icon.setContentDescription(mLetter.getName());
 
         holder.characterTextView.setText(String.valueOf(mLetter.getCharacter()));
         holder.nameTextView.setText(String.valueOf(mLetter.getName()));
@@ -99,9 +107,8 @@ public class LetterDetailsRecyclerViewAdapter
         for (int i = 0; i < words.length; i++) {
             // Format the first letter of the word by using Spannable
             Spannable highlight = new SpannableString(words[i]);
-            int shade = Utils.changeColor(letterColour, ((float) i + 0.05f));
-
-            highlight.setSpan(new ForegroundColorSpan(shade),
+            int newHue = Utils.changeColor(letterColour, ((float) i * HUE_DELTA));
+            highlight.setSpan(new ForegroundColorSpan(newHue),
                     0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             highlight.setSpan(new RelativeSizeSpan(HIGHLIGHT_RATIO),
                     0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -116,15 +123,14 @@ public class LetterDetailsRecyclerViewAdapter
 
         // Setup scroll indicators
         // Set to visible if it's not the first/last letter
-        if (mLetter.getPrevious() != null) {
+        if (position > 0) {
             holder.prev.setVisibility(View.VISIBLE);
         }
-        if (mLetter.getNext() != null) {
+        if (position < Letter.alphabet.size() - 1) {
             holder.next.setVisibility(View.VISIBLE);
         }
 
-        int shade1 = Utils.lightenColor(letterColour);
-        holder.letterPager.setBackgroundColor(shade1);
+        holder.letterPager.setBackgroundColor(letterColour);
 
         holder.setOnItemTouchListener(new RecyclerViewOnItemTouchListener() {
             @Override

@@ -71,17 +71,23 @@ public class Utils {
         hsv[2] *= 0.8f;
         return Color.HSVToColor(hsv);
     }
-    public static int lightenColor(int color) {
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[2] += 0.05f;
-        return Color.HSVToColor(hsv);
-    }
 
+    /**
+     * Change the hue of the color supplied by reducing it by the supplied value
+     *
+     * @param color the color to change
+     * @param f     the amount of hue to reduce (in HSL)
+     * @return the new color
+     */
     public static int changeColor(int color, float f) {
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
-        hsv[0] /= f;
+        float hue = hsv[0];
+        hue -= f;
+        if (hue < 0) {
+            hue += 360;
+        }
+        hsv[0] = hue;
         return Color.HSVToColor(hsv);
     }
 
