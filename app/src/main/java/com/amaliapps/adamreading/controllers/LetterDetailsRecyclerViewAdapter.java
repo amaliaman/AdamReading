@@ -11,11 +11,12 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amaliapps.adamreading.R;
 import com.amaliapps.adamreading.helper.Utils;
@@ -29,7 +30,6 @@ public class LetterDetailsRecyclerViewAdapter
     private final static float HIGHLIGHT_RATIO = 1.75F;
     private final static int HUE_DELTA = 45;
 
-
     private Context mContext;
     private List<Letter> mLetters;
     private Letter mLetter;
@@ -39,23 +39,23 @@ public class LetterDetailsRecyclerViewAdapter
         this.mContext = context;
     }
 
-    static class LetterDetailsViewHolder extends RecyclerView.ViewHolder
-            implements View.OnTouchListener {
-        TextView characterTextView;
+    static class LetterDetailsViewHolder extends RecyclerView.ViewHolder {
+        //            implements View.OnTouchListener {
+        //        TextView characterTextView;
         TextView nameTextView;
         ViewGroup wrapper;
         ViewGroup letterPager;
-        ImageView icon;
+        ImageButton icon;
         ImageView prev;
         ImageView next;
         RecyclerViewOnItemTouchListener onItemTouchListener;
 
         LetterDetailsViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnTouchListener(this);
+//            itemView.setOnTouchListener(this);
 
             // Get references to views inside the CardView
-            characterTextView = itemView.findViewById(R.id.character);
+//            characterTextView = itemView.findViewById(R.id.character);
             nameTextView = itemView.findViewById(R.id.name);
             wrapper = itemView.findViewById(R.id.wrapper);
             letterPager = itemView.findViewById(R.id.letter_pager);
@@ -64,15 +64,19 @@ public class LetterDetailsRecyclerViewAdapter
             next = itemView.findViewById(R.id.next);
         }
 
+/*
         void setOnItemTouchListener(RecyclerViewOnItemTouchListener onItemTouchListener) {
             this.onItemTouchListener = onItemTouchListener;
         }
+*/
 
+/*
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             this.onItemTouchListener.onItemTouch(this.getLayoutPosition(), motionEvent);
             return true;
         }
+*/
     }
 
     @NonNull
@@ -83,11 +87,21 @@ public class LetterDetailsRecyclerViewAdapter
     }
 
     @Override
-    public void onViewAttachedToWindow(@NonNull LetterDetailsViewHolder holder) {
+    public void onViewAttachedToWindow(@NonNull final LetterDetailsViewHolder holder) {
         AppCompatActivity activity = (AppCompatActivity) mContext;
-        Letter currentLetter = mLetters.get(holder.getAdapterPosition());
+        final int currentPosition = holder.getAdapterPosition();
+        final Letter currentLetter = mLetters.get(currentPosition);
+
         Utils.changeActivityTheme(activity, currentLetter);
-//        Utils.setActivityTitle(activity, currentLetter);
+        Utils.setActivitySubtitle(activity, currentLetter);
+
+        holder.icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String title = mContext.getResources().getStringArray(R.array.iconDescriptions)[currentPosition];
+                Toast.makeText(mContext, title, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -98,12 +112,14 @@ public class LetterDetailsRecyclerViewAdapter
         holder.icon.setImageResource(mLetter.getIconResourceId());
         holder.icon.setContentDescription(mLetter.getName());
 
-        holder.characterTextView.setText(String.valueOf(mLetter.getCharacter()));
+//        holder.characterTextView.setText(String.valueOf(mLetter.getCharacter()));
         holder.nameTextView.setText(String.valueOf(mLetter.getName()));
-//        holder.nameTextView.setTextColor(letterColour);
 
         // Populate word list with contents according to current letter
         String[] words = Letter.exampleWords.get(mLetter.getCharacter());
+
+        holder.wrapper.removeAllViewsInLayout();
+
         for (int i = 0; i < words.length; i++) {
             // Format the first letter of the word by using Spannable
             Spannable highlight = new SpannableString(words[i]);
@@ -119,6 +135,7 @@ public class LetterDetailsRecyclerViewAdapter
             wordTextView.setTextAppearance(mContext, R.style.WordListItem);
             wordTextView.setText(highlight);
             holder.wrapper.addView(wordTextView);
+
         }
 
         // Setup scroll indicators
@@ -132,16 +149,17 @@ public class LetterDetailsRecyclerViewAdapter
 
         holder.letterPager.setBackgroundColor(letterColour);
 
-        holder.setOnItemTouchListener(new RecyclerViewOnItemTouchListener() {
+/*        holder.setOnItemTouchListener(new RecyclerViewOnItemTouchListener() {
             @Override
             public void onItemTouch(int position, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_BUTTON_RELEASE) {
                     AppCompatActivity activity = (AppCompatActivity) mContext;
                     Utils.changeActivityTheme(activity, mLetter);
-                    Utils.setActivityTitle(activity, mLetter);
+                    Utils.setActivitySubtitle(activity, mLetter);
                 }
             }
-        });
+        })*/
+        ;
     }
 
     @Override

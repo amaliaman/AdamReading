@@ -34,10 +34,9 @@ public class MainActivity extends AppCompatActivity {
         Utils.setHebrewLocale(this);
 
         // Populate alphabet list
-        Initializer.createAlphabet();
-
-        // Create word list
-        Initializer.createWordList(getResources());
+//        if (!Initializer.isInitialized) {
+            Initializer.initialize(getResources());
+//        }
 
         // Get a reference to the recycler view
         RecyclerView recycler = findViewById(R.id.recycler_view);

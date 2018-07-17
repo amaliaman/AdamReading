@@ -35,13 +35,14 @@ public class Utils {
     }
 
     /**
-     * Set activity's title according to the current {@link Letter}
+     * Set activity's subtitle according to the current {@link Letter}
      *
      * @param activity the parent activity
      * @param letter   the current letter displayed in the activity
      */
-    public static void setActivityTitle(AppCompatActivity activity, Letter letter) {
-        activity.setTitle(letter.getName());
+    public static void setActivitySubtitle(AppCompatActivity activity, Letter letter) {
+        String subtitle = letter.getCharacter() + " - " + letter.getName();
+        Objects.requireNonNull(activity.getSupportActionBar()).setSubtitle(subtitle);
     }
 
     /**

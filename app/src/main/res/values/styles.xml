@@ -27,7 +27,7 @@
     <style name="WordList">
         <item name="android:padding">16sp</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 
     <!-- Style for an item in the list of words in LetterActivity -->

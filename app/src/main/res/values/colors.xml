@@ -6,8 +6,10 @@
 
     <!--Letter colors-->
     <color name="letterAleph">#f57f17</color>
-    <color name="letterBet">#dd2c00</color>
-    <color name="letterGimel">#e91e63</color>
-    <color name="letterDalet">#00e676</color>
+    <color name="letterBet">#ffab00</color>
+    <color name="letterGimel">#617e8c</color>
+    <color name="letterDalet">#8d6e63</color>
+    <color name="letterHe">#795548</color>
+    <color name="letterVav">#ffb84d</color>
 
 </resources>

@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="letterNames">
+        <item>אלף</item>
+        <item>בית</item>
+        <item>גימל</item>
+        <item>דלת</item>
+        <item>הא</item>
+        <item>וו</item>
+        <item>זין</item>
+        <item>חית</item>
+        <item>טית</item>
+        <item>יוד</item>
+        <item>כף</item>
+        <item>למד</item>
+        <item>מם</item>
+        <item>נון</item>
+        <item>סמך</item>
+        <item>עין</item>
+        <item>פא</item>
+        <item>צדי</item>
+        <item>קוף</item>
+        <item>ריש</item>
+        <item>שין</item>
+        <item>תו</item>
+    </string-array>
+
+    <string-array name="iconDescriptions">
+        <item>אריה</item>
+        <item>ברווז</item>
+        <item>גורילה</item>
+        <item>דב</item>
+        <item>היפופוטם</item>
+        <item>וולאבי</item>
+    </string-array>
+
+    <!--   -->
     <string-array name="aleph">
         <item>אדם</item>
         <item>אורי</item>
@@ -15,14 +50,28 @@
     </string-array>
 
     <string-array name="gimel">
-        <item>גגג</item>
+        <item>גוזל</item>
+        <item>גמד</item>
+        <item>גבעה</item>
+        <item>גדול</item>
+    </string-array>
+
+    <string-array name="dalet">
+        <item>דלת</item>
+        <item>דיונון</item>
+        <item>דג</item>
+        <item>דלי</item>
+    </string-array>
+
+    <string-array name="he">
+        <item>הההה</item>
         <item>ברבור</item>
         <item>בנאי</item>
         <item>בקבוק</item>
     </string-array>
 
-    <string-array name="dalet">
-        <item>דדד</item>
+    <string-array name="vav">
+        <item>וווו</item>
         <item>ברבור</item>
         <item>בנאי</item>
         <item>בקבוק</item>
