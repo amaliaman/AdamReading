@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- All the letters -->
     <string-array name="letterNames">
         <item>אלף</item>
         <item>בית</item>
@@ -25,6 +26,7 @@
         <item>תו</item>
     </string-array>
 
+    <!-- Words corresponding to icons (animals) -->
     <string-array name="iconDescriptions">
         <item>אריה</item>
         <item>ברווז</item>
@@ -50,7 +52,7 @@
         <item>תרנגול</item>
     </string-array>
 
-    <!--   -->
+    <!-- Words for each letter -->
     <string-array name="aleph">
         <item>אדם</item>
         <item>אורי</item>
@@ -80,116 +82,128 @@
     </string-array>
 
     <string-array name="he">
-        <item>הההה</item>
-        <item>ברבור</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>הר</item>
+        <item>הדס</item>
+        <item>הגה</item>
+        <item>הורים</item>
     </string-array>
 
     <string-array name="vav">
-        <item>וווו</item>
-        <item>ברבור</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>ורד</item>
+        <item>וניל</item>
+        <item>ורוד</item>
+        <item>ופל</item>
     </string-array>
 
     <string-array name="zayin">
-        <item>זזז</item>
-        <item>ברבור</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>זברה</item>
+        <item>זחל</item>
+        <item>זבוב</item>
+        <item>זנב</item>
     </string-array>
 
     <string-array name="het">
-        <item>חחח</item>
-        <item>ברבור</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>חדר</item>
+        <item>חתול</item>
+        <item>חבר</item>
+        <item>חומה</item>
     </string-array>
 
     <string-array name="tet">
-        <item>חחח</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>טבע</item>
+        <item>טיול</item>
+        <item>טוב</item>
+        <item>טעים</item>
     </string-array>
 
     <string-array name="yod">
-        <item>ייי</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>ילד</item>
+        <item>יושב</item>
+        <item>יען</item>
+        <item>ים</item>
     </string-array>
+
     <string-array name="kaf">
-        <item>כככככ</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>כוכב</item>
+        <item>כביש</item>
+        <item>כד</item>
+        <item>כלב</item>
     </string-array>
+
     <string-array name="lamed">
-        <item>ללללל</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>ליצן</item>
+        <item>לימון</item>
+        <item>לחם</item>
+        <item>לבן</item>
     </string-array>
+
     <string-array name="mem">
-        <item>מממ</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>מצלמה</item>
+        <item>מצחיק</item>
+        <item>מרובע</item>
+        <item>משמש</item>
     </string-array>
+
     <string-array name="nun">
-        <item>נננ</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>נחל</item>
+        <item>נייר</item>
+        <item>נעל</item>
+        <item>נוצה</item>
     </string-array>
+
     <string-array name="samekh">
-        <item>ססס</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>סוס</item>
+        <item>סדין</item>
+        <item>סנאי</item>
+        <item>סנדל</item>
     </string-array>
+
     <string-array name="ayin">
-        <item>עעעעע</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>עין</item>
+        <item>עלה</item>
+        <item>ענבים</item>
+        <item>עץ</item>
     </string-array>
+
     <string-array name="pe">
-        <item>פפפפ</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>פינגווין</item>
+        <item>פרפר</item>
+        <item>פה</item>
+        <item>פועל</item>
     </string-array>
+
     <string-array name="tsadi">
-        <item>צצצצ</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>צד</item>
+        <item>צחוק</item>
+        <item>צרעה</item>
+        <item>צעיר</item>
     </string-array>
+
     <string-array name="qof">
-        <item>קקק</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>קרש</item>
+        <item>קטן</item>
+        <item>קולב</item>
+        <item>קיץ</item>
     </string-array>
+
     <string-array name="resh">
-        <item>ררר</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>ראש</item>
+        <item>רימון</item>
+        <item>רשימה</item>
+        <item>רופא</item>
     </string-array>
+
     <string-array name="shin">
-        <item>ררר</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>שלום</item>
+        <item>שיניים</item>
+        <item>שמח</item>
+        <item>שומר</item>
     </string-array>
+
     <string-array name="tav">
-        <item>ררר</item>
-        <item>טטט</item>
-        <item>בנאי</item>
-        <item>בקבוק</item>
+        <item>תוף</item>
+        <item>תלתל</item>
+        <item>תרמיל</item>
+        <item>תיק</item>
     </string-array>
 </resources>

@@ -37,7 +37,7 @@
             android:layout_centerHorizontal="true"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/app_name"
-            android:padding="24dp"
+            android:padding="@dimen/icon_padding"
             tools:src="@drawable/aleph"
             tools:targetApi="lollipop" />
 

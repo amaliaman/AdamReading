@@ -95,6 +95,8 @@ public class LetterDetailsRecyclerViewAdapter
 
         holder.nameTextView.setText(String.valueOf(mLetter.getName()));
 
+        holder.letterPager.setBackgroundColor(letterColour);
+
         // Populate word list with contents according to current letter
         String[] words = Letter.exampleWords.get(mLetter.getCharacter());
 
@@ -122,12 +124,15 @@ public class LetterDetailsRecyclerViewAdapter
         // Set to visible if it's not the first/last letter
         if (position > 0) {
             holder.prev.setVisibility(View.VISIBLE);
+        } else {
+            holder.prev.setVisibility(View.INVISIBLE);
         }
         if (position < Letter.alphabet.size() - 1) {
             holder.next.setVisibility(View.VISIBLE);
+        } else {
+            holder.next.setVisibility(View.INVISIBLE);
         }
 
-        holder.letterPager.setBackgroundColor(letterColour);
     }
 
     @Override
