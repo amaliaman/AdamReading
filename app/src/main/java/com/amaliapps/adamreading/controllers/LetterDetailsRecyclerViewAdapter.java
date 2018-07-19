@@ -10,6 +10,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +23,20 @@ import com.amaliapps.adamreading.R;
 import com.amaliapps.adamreading.helper.Utils;
 import com.amaliapps.adamreading.model.Letter;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class LetterDetailsRecyclerViewAdapter
         extends RecyclerView.Adapter<LetterDetailsRecyclerViewAdapter.LetterDetailsViewHolder> {
 
-    private final static float HIGHLIGHT_RATIO = 1.75F;
+    private final static float HIGHLIGHT_RATIO = 1.5F;
     private final static int HUE_DELTA = 45;
 
     private Context mContext;
+    private AppCompatActivity mActivity;
     private List<Letter> mLetters;
-    private Letter mLetter;
+    private Letter mAttached;
+    private LinkedList<Letter> mAttachedFifo;
 
     public LetterDetailsRecyclerViewAdapter(Context context, List<Letter> letters) {
         this.mLetters = letters;
@@ -68,13 +72,35 @@ public class LetterDetailsRecyclerViewAdapter
     }
 
     @Override
+    public void onViewDetachedFromWindow(@NonNull LetterDetailsViewHolder holder) {
+        final int currentPosition = holder.getAdapterPosition();
+        final Letter currentLetter = mLetters.get(currentPosition);
+        Letter previous = mAttachedFifo.removeFirst();
+        if (mAttached.getName().equals(currentLetter.getName())) {
+            Utils.changeActivityTheme(mActivity, previous);
+            Utils.setActivitySubtitle(mActivity, previous);
+        }
+        super.onViewDetachedFromWindow(holder);
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        mAttachedFifo = new LinkedList<>();
+        mActivity = (AppCompatActivity) mContext;
+
+        super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    @Override
     public void onViewAttachedToWindow(@NonNull final LetterDetailsViewHolder holder) {
-        AppCompatActivity activity = (AppCompatActivity) mContext;
         final int currentPosition = holder.getAdapterPosition();
         final Letter currentLetter = mLetters.get(currentPosition);
 
-        Utils.changeActivityTheme(activity, currentLetter);
-        Utils.setActivitySubtitle(activity, currentLetter);
+        mAttachedFifo.add(currentLetter);
+
+
+        Utils.changeActivityTheme(mActivity, currentLetter);
+        Utils.setActivitySubtitle(mActivity, currentLetter);
 
         holder.icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,13 +109,15 @@ public class LetterDetailsRecyclerViewAdapter
                 Toast.makeText(mContext, title, Toast.LENGTH_SHORT).show();
             }
         });
+        mAttached = currentLetter;
+        super.onViewAttachedToWindow(holder);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LetterDetailsViewHolder holder, int position) {
-        mLetter = mLetters.get(position);
-        int letterColour = mContext.getResources().getColor(mLetter.getColorResourceId());
 
+        Letter mLetter = mLetters.get(position);
+        int letterColour = mContext.getResources().getColor(mLetter.getColorResourceId());
         holder.icon.setImageResource(mLetter.getIconResourceId());
         holder.icon.setContentDescription(mLetter.getName());
 
@@ -117,7 +145,6 @@ public class LetterDetailsRecyclerViewAdapter
             wordTextView.setTextAppearance(mContext, R.style.WordListItem);
             wordTextView.setText(highlight);
             holder.wrapper.addView(wordTextView);
-
         }
 
         // Setup scroll indicators
@@ -132,7 +159,6 @@ public class LetterDetailsRecyclerViewAdapter
         } else {
             holder.next.setVisibility(View.INVISIBLE);
         }
-
     }
 
     @Override
