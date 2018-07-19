@@ -1,0 +1,13 @@
+<vector android:height="64dp" android:viewportHeight="512"
+    android:viewportWidth="512" android:width="64dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#EB4F00" android:pathData="M166,30H71.164c-2.529,-9.366 -7.218,-18.27 -14.559,-25.605c-5.859,-5.859 -15.352,-5.859 -21.211,0s-5.859,15.352 0,21.211c10.693,10.693 10.693,28.096 0,38.789c-5.859,5.859 -5.859,15.352 0,21.211C38.324,88.535 42.162,90 46,90s7.676,-1.465 10.605,-4.395C63.946,78.27 68.635,69.366 71.164,60H166c8.291,0 15,-6.709 15,-15S174.291,30 166,30z"/>
+    <path android:fillColor="#32D736" android:pathData="M286,60v212h-90V90h-15c-24.901,0 -45,-20.099 -45,-45s20.099,-45 45,-45h45c5.099,0 10.201,0.601 15,2.1C266.8,8.699 286,32.1 286,60z"/>
+    <path android:fillColor="#10BB67" android:pathData="M286,60v212h-45V2.1C266.8,8.699 286,32.1 286,60z"/>
+    <path android:fillColor="#32D736" android:pathData="M452,377c0,24.901 -20.099,45 -45,45H106c-24.901,0 -45,-20.099 -45,-45s20.099,-45 45,-45h301C431.901,332 452,352.099 452,377z"/>
+    <path android:fillColor="#10BB67" android:pathData="M512,416.3v5.7c0,49.799 -40.201,90 -90,90H45c-24.901,0 -45,-20.099 -45,-45s20.099,-45 45,-45h385.699c14.101,0 27.9,-3.3 40.201,-9.6l19.501,-9.6C500.3,398 512,405.2 512,416.3z"/>
+    <path android:fillColor="#0CA656" android:pathData="M512,416.3v5.7c0,49.799 -40.201,90 -90,90H241v-90h189.699c14.101,0 27.9,-3.3 40.201,-9.6l19.501,-9.6C500.3,398 512,405.2 512,416.3z"/>
+    <path android:fillColor="#10BB67" android:pathData="M452,377c0,24.901 -20.099,45 -45,45H241v-90h166C431.901,332 452,352.099 452,377z"/>
+    <path android:fillColor="#10BB67" android:pathData="M392,287c0,24.901 -20.099,45 -45,45H166c-24.901,0 -45,-20.099 -45,-45s20.099,-45 45,-45h181C371.901,242 392,262.099 392,287z"/>
+    <path android:fillColor="#0CA656" android:pathData="M347,332H241v-90h106c24.901,0 45,20.099 45,45S371.901,332 347,332z"/>
+    <path android:fillColor="#664B34" android:pathData="M181,0v30c0,8.291 6.709,15 15,15s15,-6.709 15,-15V0H181z"/>
+</vector>

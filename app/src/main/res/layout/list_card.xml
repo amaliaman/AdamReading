@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:layout_margin="16dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     android:layoutDirection="rtl"
     app:cardCornerRadius="16dp"
-    app:cardElevation="16dp">
+    app:cardElevation="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,8 +20,19 @@
             style="@style/LetterCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
             tools:text="א"
             tools:textColor="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/letter_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
+            tools:src="@drawable/aleph" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

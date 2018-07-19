@@ -5,11 +5,26 @@
     <color name="colorAccent">#FF4081</color>
 
     <!--Letter colors-->
-    <color name="letterAleph">#f57f17</color>
-    <color name="letterBet">#ffab00</color>
-    <color name="letterGimel">#617e8c</color>
-    <color name="letterDalet">#8d6e63</color>
-    <color name="letterHe">#795548</color>
-    <color name="letterVav">#ffb84d</color>
-
+    <color name="aleph">#f57f17</color>
+    <color name="bet">#ffab00</color>
+    <color name="gimel">#617e8c</color>
+    <color name="dalet">#fbc02d</color>
+    <color name="he">#795548</color>
+    <color name="vav">#8d6e63</color>
+    <color name="zayin">#8bc34a</color>
+    <color name="het">#ff3d00</color>
+    <color name="tet">#2962ff</color>
+    <color name="yod">#ffa726</color>
+    <color name="kaf">#e57373</color>
+    <color name="lamed">#039be5</color>
+    <color name="mem">#00acc1</color>
+    <color name="nun">#00c853</color>
+    <color name="samekh">#ff5722</color>
+    <color name="ayin">#0d47a1</color>
+    <color name="pe">#ff4081</color>
+    <color name="tsadi">#00695c</color>
+    <color name="qof">#bcaaa4</color>
+    <color name="resh">#757575</color>
+    <color name="shin">#ff6d00</color>
+    <color name="tav">#ff1744</color>
 </resources>

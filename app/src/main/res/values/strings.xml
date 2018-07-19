@@ -4,4 +4,14 @@
 
     <string name="next">הבא</string>
     <string name="prev">הקודם</string>
+
+    <string name="about_title">אודות</string>
+
+    <string name="about_version_title">גרסה</string>
+
+    <string name="about_dev_title">פיתוח</string>
+    <string name="about_dev">amaliapps: amaliagilad@gmail.com</string>
+
+    <string name="about_icons_url_title">אייקונים</string>
+    <string name="about_icons_url">Freepik from Flaticon: www.flaticon.com/authors/freepik</string>
 </resources>

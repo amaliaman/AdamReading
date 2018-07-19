@@ -40,22 +40,17 @@ public class LetterDetailsRecyclerViewAdapter
     }
 
     static class LetterDetailsViewHolder extends RecyclerView.ViewHolder {
-        //            implements View.OnTouchListener {
-        //        TextView characterTextView;
         TextView nameTextView;
         ViewGroup wrapper;
         ViewGroup letterPager;
         ImageButton icon;
         ImageView prev;
         ImageView next;
-        RecyclerViewOnItemTouchListener onItemTouchListener;
 
         LetterDetailsViewHolder(View itemView) {
             super(itemView);
-//            itemView.setOnTouchListener(this);
 
             // Get references to views inside the CardView
-//            characterTextView = itemView.findViewById(R.id.character);
             nameTextView = itemView.findViewById(R.id.name);
             wrapper = itemView.findViewById(R.id.wrapper);
             letterPager = itemView.findViewById(R.id.letter_pager);
@@ -63,20 +58,6 @@ public class LetterDetailsRecyclerViewAdapter
             prev = itemView.findViewById(R.id.prev);
             next = itemView.findViewById(R.id.next);
         }
-
-/*
-        void setOnItemTouchListener(RecyclerViewOnItemTouchListener onItemTouchListener) {
-            this.onItemTouchListener = onItemTouchListener;
-        }
-*/
-
-/*
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            this.onItemTouchListener.onItemTouch(this.getLayoutPosition(), motionEvent);
-            return true;
-        }
-*/
     }
 
     @NonNull
@@ -112,7 +93,6 @@ public class LetterDetailsRecyclerViewAdapter
         holder.icon.setImageResource(mLetter.getIconResourceId());
         holder.icon.setContentDescription(mLetter.getName());
 
-//        holder.characterTextView.setText(String.valueOf(mLetter.getCharacter()));
         holder.nameTextView.setText(String.valueOf(mLetter.getName()));
 
         // Populate word list with contents according to current letter
@@ -148,18 +128,6 @@ public class LetterDetailsRecyclerViewAdapter
         }
 
         holder.letterPager.setBackgroundColor(letterColour);
-
-/*        holder.setOnItemTouchListener(new RecyclerViewOnItemTouchListener() {
-            @Override
-            public void onItemTouch(int position, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_BUTTON_RELEASE) {
-                    AppCompatActivity activity = (AppCompatActivity) mContext;
-                    Utils.changeActivityTheme(activity, mLetter);
-                    Utils.setActivitySubtitle(activity, mLetter);
-                }
-            }
-        })*/
-        ;
     }
 
     @Override

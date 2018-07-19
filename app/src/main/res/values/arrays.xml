@@ -29,9 +29,25 @@
         <item>אריה</item>
         <item>ברווז</item>
         <item>גורילה</item>
-        <item>דב</item>
+        <item>דבורה</item>
         <item>היפופוטם</item>
         <item>וולאבי</item>
+        <item>זיקית</item>
+        <item>חיפושית</item>
+        <item>טווס</item>
+        <item>ינשוף</item>
+        <item>כבשה</item>
+        <item>לויתן</item>
+        <item>מדוזה</item>
+        <item>נחש</item>
+        <item>סרטן</item>
+        <item>עכביש</item>
+        <item>פלמינגו</item>
+        <item>צב</item>
+        <item>קרנף</item>
+        <item>רקון</item>
+        <item>שועל</item>
+        <item>תרנגול</item>
     </string-array>
 
     <!--   -->
@@ -73,6 +89,106 @@
     <string-array name="vav">
         <item>וווו</item>
         <item>ברבור</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+
+    <string-array name="zayin">
+        <item>זזז</item>
+        <item>ברבור</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+
+    <string-array name="het">
+        <item>חחח</item>
+        <item>ברבור</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+
+    <string-array name="tet">
+        <item>חחח</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+
+    <string-array name="yod">
+        <item>ייי</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="kaf">
+        <item>כככככ</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="lamed">
+        <item>ללללל</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="mem">
+        <item>מממ</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="nun">
+        <item>נננ</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="samekh">
+        <item>ססס</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="ayin">
+        <item>עעעעע</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="pe">
+        <item>פפפפ</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="tsadi">
+        <item>צצצצ</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="qof">
+        <item>קקק</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="resh">
+        <item>ררר</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="shin">
+        <item>ררר</item>
+        <item>טטט</item>
+        <item>בנאי</item>
+        <item>בקבוק</item>
+    </string-array>
+    <string-array name="tav">
+        <item>ררר</item>
+        <item>טטט</item>
         <item>בנאי</item>
         <item>בקבוק</item>
     </string-array>

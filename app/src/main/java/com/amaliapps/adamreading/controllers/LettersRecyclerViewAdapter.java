@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amaliapps.adamreading.R;
@@ -30,6 +31,7 @@ public class LettersRecyclerViewAdapter extends RecyclerView.Adapter<LettersRecy
     static class LetterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         CardView cardView;
         TextView letterCharacter;
+        ImageView icon;
         RecyclerViewItemClickListener itemClickListener;
 
         LetterViewHolder(View itemView) {
@@ -40,6 +42,8 @@ public class LettersRecyclerViewAdapter extends RecyclerView.Adapter<LettersRecy
             cardView = itemView.findViewById(R.id.card_view);
             // Get references to views inside the CardView
             letterCharacter = itemView.findViewById(R.id.character);
+
+            icon = itemView.findViewById(R.id.letter_icon);
         }
 
         @Override
@@ -63,6 +67,8 @@ public class LettersRecyclerViewAdapter extends RecyclerView.Adapter<LettersRecy
     public void onBindViewHolder(@NonNull LetterViewHolder holder, int position) {
         holder.letterCharacter.setText(String.valueOf(mLetters.get(position).getCharacter()));
         holder.letterCharacter.setTextColor(mContext.getResources().getColor(mLetters.get(position).getColorResourceId()));
+
+        holder.icon.setImageResource(mLetters.get(position).getIconResourceId());
 
         holder.setItemClickListener(new RecyclerViewItemClickListener() {
             @Override
