@@ -95,6 +95,10 @@ public class Utils {
         return Color.HSVToColor(hsv);
     }
 
+    /**
+     * Dim the background when the {@link PopupWindow} is displayed
+     * @param popupWindow the {@link PopupWindow}
+     */
     public static void dimBehind(PopupWindow popupWindow) {
         View container;
         if (popupWindow.getBackground() == null) {

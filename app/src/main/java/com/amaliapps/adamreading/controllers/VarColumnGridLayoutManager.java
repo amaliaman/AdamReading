@@ -4,7 +4,10 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-/*   http://www.ajsofts.com/2017/03/android-dynamic-column-number-in.html   */
+/**
+ * A {@link GridLayoutManager} with dynamic number of columns
+ * http://www.ajsofts.com/2017/03/android-dynamic-column-number-in.html
+ */
 public class VarColumnGridLayoutManager extends GridLayoutManager {
     private int mMinItemWidth;
 

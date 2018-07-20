@@ -9,13 +9,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A helper class that creates the alphabet list and example words for each {@link Letter}
+ */
 public class Initializer {
-//    public static boolean isInitialized = false;
 
     public static void initialize(Resources res) {
         createAlphabet(res);
         createWordList(res);
-//        isInitialized = true;
     }
 
     private static void createAlphabet(Resources res) {

@@ -10,7 +10,6 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,23 +25,63 @@ import com.amaliapps.adamreading.model.Letter;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * An adapter that manages current letter details in LetterActivity
+ */
 public class LetterDetailsRecyclerViewAdapter
         extends RecyclerView.Adapter<LetterDetailsRecyclerViewAdapter.LetterDetailsViewHolder> {
 
+    /**
+     * The relative size of the highlighted first letter in the example word
+     */
     private final static float HIGHLIGHT_RATIO = 1.5F;
+
+    /**
+     * The amount of HUE (in hsv) to change in every iteration of highlighting the example word
+     */
     private final static int HUE_DELTA = 45;
 
+
+    /**
+     * The {@link Context} passed from the activity
+     */
     private Context mContext;
+
+    /**
+     * The {@link Context} cast to {@link AppCompatActivity}
+     */
     private AppCompatActivity mActivity;
+
+    /**
+     * The list of {@link Letter}s
+     */
     private List<Letter> mLetters;
+
+    /**
+     * The {@link Letter}
+     */
     private Letter mAttached;
+
+    /**
+     * A fifo list to save last 2 attached {@link Letter}s,
+     * used to revert to the last {@link Letter} in case swiping was cancelled
+     */
     private LinkedList<Letter> mAttachedFifo;
 
+    /**
+     * Constructor with {@link Context} and list of {@link Letter}s
+     *
+     * @param context the activity
+     * @param letters the list of {@link Letter}s
+     */
     public LetterDetailsRecyclerViewAdapter(Context context, List<Letter> letters) {
         this.mLetters = letters;
         this.mContext = context;
     }
 
+    /**
+     * The view holder that saves references to relevant views
+     */
     static class LetterDetailsViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         ViewGroup wrapper;
@@ -76,6 +115,8 @@ public class LetterDetailsRecyclerViewAdapter
         final int currentPosition = holder.getAdapterPosition();
         final Letter currentLetter = mLetters.get(currentPosition);
         Letter previous = mAttachedFifo.removeFirst();
+
+        // In case swiping a letter was cancelled, revert to the previous letter
         if (mAttached.getName().equals(currentLetter.getName())) {
             Utils.changeActivityTheme(mActivity, previous);
             Utils.setActivitySubtitle(mActivity, previous);
@@ -85,9 +126,9 @@ public class LetterDetailsRecyclerViewAdapter
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        // Initiate members once
         mAttachedFifo = new LinkedList<>();
         mActivity = (AppCompatActivity) mContext;
-
         super.onAttachedToRecyclerView(recyclerView);
     }
 
@@ -96,12 +137,14 @@ public class LetterDetailsRecyclerViewAdapter
         final int currentPosition = holder.getAdapterPosition();
         final Letter currentLetter = mLetters.get(currentPosition);
 
+        // Save attached letter in fifo list
         mAttachedFifo.add(currentLetter);
 
-
+        // Change action bar colour and subtitle
         Utils.changeActivityTheme(mActivity, currentLetter);
         Utils.setActivitySubtitle(mActivity, currentLetter);
 
+        // Handle icon clicks
         holder.icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,15 +152,18 @@ public class LetterDetailsRecyclerViewAdapter
                 Toast.makeText(mContext, title, Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Save currently attached letter
         mAttached = currentLetter;
         super.onViewAttachedToWindow(holder);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LetterDetailsViewHolder holder, int position) {
-
         Letter mLetter = mLetters.get(position);
         int letterColour = mContext.getResources().getColor(mLetter.getColorResourceId());
+
+        // Bind current values to views
         holder.icon.setImageResource(mLetter.getIconResourceId());
         holder.icon.setContentDescription(mLetter.getName());
 
@@ -127,9 +173,7 @@ public class LetterDetailsRecyclerViewAdapter
 
         // Populate word list with contents according to current letter
         String[] words = Letter.exampleWords.get(mLetter.getCharacter());
-
         holder.wrapper.removeAllViewsInLayout();
-
         for (int i = 0; i < words.length; i++) {
             // Format the first letter of the word by using Spannable
             Spannable highlight = new SpannableString(words[i]);
@@ -147,8 +191,7 @@ public class LetterDetailsRecyclerViewAdapter
             holder.wrapper.addView(wordTextView);
         }
 
-        // Setup scroll indicators
-        // Set to visible if it's not the first/last letter
+        // Setup scroll indicators - set to visible if it's not the first/last letter
         if (position > 0) {
             holder.prev.setVisibility(View.VISIBLE);
         } else {

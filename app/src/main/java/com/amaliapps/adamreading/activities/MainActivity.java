@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final int MIN_ITEM_WIDTH = 360;
 
+    /**
+     * Amount of elevation of 'about' {@link PopupWindow}
+     */
     private static final float POPUP_ELEVATION = 5f;
 
     /**
@@ -42,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String LETTER_POSITION_EXTRA = MainActivity.class.getPackage().getName() +
             "." + MainActivity.class.getSimpleName() + ".LETTER_POSITION_EXTRA";
 
-
+    /**
+     * A reference to the {@link RecyclerView} that handles the grid of all {@link Letter}s
+     */
     RecyclerView mRecycler;
 
     @Override
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            // 'About' option chosen
             case R.id.about:
                 displayAboutPopup();
                 break;
@@ -86,13 +92,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayAboutPopup() {
-        //instantiate the popup_about.xml layout file
+        // Instantiate the layout file
         LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup popupRoot = findViewById(R.id.popup_root);
         View customView = Objects.requireNonNull(layoutInflater).inflate(R.layout.popup_about, popupRoot);
         ImageButton closePopupBtn = customView.findViewById(R.id.closePopupBtn);
 
-        //instantiate popup window
+        // Instantiate popup window
         final PopupWindow popupWindow = new PopupWindow(customView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -102,12 +108,14 @@ public class MainActivity extends AppCompatActivity {
         //display the popup window
         popupWindow.showAtLocation(mRecycler, Gravity.CENTER, 0, 0);
 
+        // Set the current version
         TextView version = popupWindow.getContentView().findViewById(R.id.about_version);
         version.setText(BuildConfig.VERSION_NAME);
 
+        // Dim the background
         Utils.dimBehind(popupWindow);
 
-        //close the popup window on button click
+        // Close the popup window on button click
         closePopupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
