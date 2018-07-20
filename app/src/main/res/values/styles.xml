@@ -8,7 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
     <!-- Basic style for letter TextView -->
     <style name="BasicLetter">
         <item name="android:layout_width">match_parent</item>
@@ -16,16 +15,8 @@
     </style>
 
     <!-- Style for list of words in LetterActivity -->
-    <style name="Character" parent="BasicLetter">
-        <item name="android:fontFamily">@font/rubik_regular</item>
-        <item name="android:textSize">48sp</item>
-        <item name="android:padding">16sp</item>
-        <item name="android:gravity">center_horizontal</item>
-    </style>
-
-    <!-- Style for list of words in LetterActivity -->
     <style name="WordList">
-        <item name="android:padding">16sp</item>
+        <item name="android:padding">@dimen/letter_details_size</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
@@ -33,22 +24,22 @@
     <!-- Style for an item in the list of words in LetterActivity -->
     <style name="WordListItem" parent="BasicLetter">
         <item name="android:fontFamily">@font/rubik_regular</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/letter_wordlist_size</item>
     </style>
 
     <!-- Style for single word in MainActivity -->
     <style name="LetterCard" parent="BasicLetter">
         <item name="android:fontFamily">@font/rubik_medium</item>
-        <item name="android:textSize">40sp</item>
+        <item name="android:textSize">@dimen/letter_card_size</item>
     </style>
 
     <!-- Style for name of word in LetterActivity -->
     <style name="LetterName" parent="BasicLetter">
         <item name="android:fontFamily">@font/rubik_regular</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">48sp</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textSize">@dimen/letter_main_size</item>
+        <item name="android:paddingTop">@dimen/half_padding</item>
+        <item name="android:paddingBottom">@dimen/half_padding</item>
         <item name="android:textAlignment">center</item>
     </style>
 
@@ -65,7 +56,7 @@
     <style name="AboutItem">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingTop">@dimen/default_padding</item>
     </style>
 
     <style name="AboutItemTitle" parent="AboutItem">

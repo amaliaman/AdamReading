@@ -5,4 +5,9 @@
     <dimen name="icon_padding">24dp</dimen>
     <dimen name="card_icon">32dp</dimen>
     <dimen name="card_radius">8dp</dimen>
+
+    <dimen name="letter_main_size">48sp</dimen>
+    <dimen name="letter_details_size">16sp</dimen>
+    <dimen name="letter_wordlist_size">24sp</dimen>
+    <dimen name="letter_card_size">40sp</dimen>
 </resources>
